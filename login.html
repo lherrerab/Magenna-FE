@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html ng-app="myAgenda" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+		<script src="js/agenda-controller.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/myagenda.css">
+		<title>Login</title>
+	</head>
+	<body>
+		<div class="jumbotron vertical-center">
+			<div class="container">
+				<div class="login-container" ng-controller="loginController">
+					<form class="form-signin" ng-submit="checkCredentials()">
+						<input type="text" class="form-control" ng-model="username" placeholder="Username">
+						<input type="text" class="form-control" ng-model="password" placeholder="Password">
+						<br />				
+						<input type="submit" class="btn btn-lg btn-primary btn-block" value="Login" />
+					</form>	
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

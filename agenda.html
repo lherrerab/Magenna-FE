@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html ng-app="myAgenda" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+		<script src="js/agenda-controller.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/myagendaDashboard.css">
+		<title>Magenda</title>
+	</head>
+	<body ng-controller="dashboardController">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+      		<div class="container-fluid">
+        		<div class="navbar-header">
+          			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            			<span class="sr-only">Toggle navigation</span>
+            			<span class="icon-bar"></span>
+            			<span class="icon-bar"></span>
+            			<span class="icon-bar"></span>
+          			</button>
+          			<a class="navbar-brand" href="#">Magenda</a>
+        		</div>
+        		<div id="navbar" class="navbar-collapse collapse">
+          			<ul class="nav navbar-nav navbar-right">
+            			<li><a href="#">Profile</a></li>
+		      		</ul>
+          			<form class="navbar-form navbar-right">
+            			<input type="text" size="50" class="form-control" placeholder="Search...">
+          			</form>
+        		</div>
+      		</div>
+    	</nav>
+		
+		<div class="container-fluid">
+      		<div class="row">
+        		<div class="col-sm-3 col-md-2 sidebar">
+          			<ul class="nav nav-sidebar">
+            			<li class="active"><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
+            			<li><a href="#" ng-click="activateContacts()">Contacts</a></li>
+            			<li><a href="#">Agenda</a></li>
+            			<li><a href="#">Notes</a></li>
+          			</ul>
+          			<ul class="nav nav-sidebar">
+            			<li><a href="">Settings</a></li>
+            			<li><a href="">Logout</a></li>
+          			</ul>
+        		</div>
+        		
+        		<div id="divDashboard" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
+          			<h1 class="page-header">Dashboard</h1>
+        		</div>
+        		<div id="divContacts" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
+          			<h1 class="page-header">Contacts</h1>
+					<div class="table-responsive">
+            			<table class="table table-striped">
+             				<thead>
+                				<tr>
+                  					<th>#</th>
+                  					<th>Name</th>
+                  					<th>Phone</th>
+                  					<th>Email</th>
+                  					<th>Added on</th>
+                				</tr>
+              				</thead>
+              				<tbody>
+                				<tr ng-repeat="contact in contacts | orderBy : 'name'">
+                  					<td>{{ $index + 1 }}</td>
+                  					<td>{{ contact.name }}</td>
+                  					<td>{{ contact.phone }}</td>
+                  					<td>{{ contact.email }}</td>
+                  					<td>{{ contact.added_on }}</td>
+                				</tr>
+              				</tbody>
+            			</table>          			
+        			</div>
+        		</div>	
+        		<div id="divAgenda" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
+          			<h1 class="page-header">Agenda</h1>
+        		</div>
+        		<div id="divNotes" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
+          			<h1 class="page-header">Notes</h1>
+        		</div>
+      		</div>
+    	</div>    	
+	</body>
+</html>
+
