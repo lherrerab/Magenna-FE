@@ -5,7 +5,8 @@ myApp.controller('loginController', function($scope,$http)
 	
 	$scope.checkCredentials = function()
 	{
-		if($scope.validateFields() == true){
+		if($scope.validateFields() == true)
+		{
 			$http({
 				method: 'POST',
 				url: 'http://localhost/AgendaBackend/myAgenda.php',
@@ -55,6 +56,9 @@ myApp.controller('dashboardController', function($scope,$http)
 		});
 	}
 	
-	$scope.formatTime = function(utcDate) { return moment(utcDate).format("MMddYYYY"); }
+	$scope.formatTime = function(utcDate) { 
+		return moment(utcDate).format("MMddYYYY");
+		
+	}
 	
 });
