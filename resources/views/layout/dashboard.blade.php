@@ -22,7 +22,7 @@
             			<span class="icon-bar"></span>
             			<span class="icon-bar"></span>
           			</button>
-          			<a class="navbar-brand" href="#">Magenda</a>
+          			<a class="navbar-brand" href="#">Magenna</a>
         		</div>
         		<div id="navbar" class="navbar-collapse collapse">
           			<ul class="nav navbar-nav navbar-right">
@@ -39,53 +39,16 @@
       		<div class="row">
         		<div class="col-sm-3 col-md-2 sidebar">
           			<ul class="nav nav-sidebar">
-            			<li class="active"><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
-            			<li><a href="#" ng-click="activateContacts()">Contacts</a></li>
-            			<li><a href="#">Agenda</a></li>
-            			<li><a href="#">Notes</a></li>
+          				@yield('sidebar')
           			</ul>
           			<ul class="nav nav-sidebar">
-            			<li><a href="">Settings</a></li>
             			<li><a href="">Logout</a></li>
           			</ul>
         		</div>
         		
-        		<div id="divDashboard" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
-          			<h1 class="page-header">Dashboard</h1>
-        		</div>
-        		<div id="divContacts" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
-          			<h1 class="page-header">Contacts</h1>
-					<div class="table-responsive">
-            			<table class="table table-striped">
-             				<thead>
-                				<tr>
-                  					<th>#</th>
-                  					<th>Name</th>
-                  					<th>Phone</th>
-                  					<th>Email</th>
-                  					<th>Added on</th>
-                				</tr>
-              				</thead>
-              				<tbody>
-                				<tr ng-repeat="contact in contacts | orderBy : 'name'">
-                  					<td>{{ $index + 1 }}</td>
-                  					<td>{{ contact.name }}</td>
-                  					<td>{{ contact.phone }}</td>
-                  					<td>{{ contact.email }}</td>
-                  					<td>{{ contact.added_on }}</td>
-                				</tr>
-              				</tbody>
-            			</table>          			
-        			</div>
-        		</div>	
-        		<div id="divAgenda" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
-          			<h1 class="page-header">Agenda</h1>
-        		</div>
-        		<div id="divNotes" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
-          			<h1 class="page-header">Notes</h1>
-        		</div>
+        		@yield('content')
+        		
       		</div>
     	</div>    	
 	</body>
 </html>
-
