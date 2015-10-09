@@ -1,5 +1,0 @@
-suites:
-    main:
-        namespace: Magenna
-        psr4_prefix: Magenna
-        src_path: app
