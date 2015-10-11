@@ -22,7 +22,7 @@ Route::get('notes',function(){
 	return view('notes');
 });
 Route::get('agenda',function(){
-	return view('agenda');
+	return view('index');
 });
 
 Route::get('/', function () {
