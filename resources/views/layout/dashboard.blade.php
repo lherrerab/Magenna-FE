@@ -1,83 +1,54 @@
-@extends('layout.dashboard')
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
 
-@section('sidebar')
-            			<li><a href="/magenna">Dashboard <span class="sr-only">(current)</span></a></li>
-            			<li class="active"><a href="#" ng-click="activateContacts()">Contacts</a></li>
-            			<li><a href="agenda">Agenda</a></li>
-            			<li><a href="notes">Notes</a></li>
-@stop
-
-@section('content')        		
-        		
-        		<div id="divContacts" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">        			
-          			<h1 class="page-header">
-          				Contacts          				
-          			</h1>
-          			
-					<div class="table-responsive">
-            			<table class="table table-condensed">
-             				<thead>
-             					<tr>
-             						<th colspan="5">
-             							<button title="Create new member" class="btn" data-toggle="modal" data-target="#modalCreate">
-											<span class="glyphicon glyphicon-user"></span> New Member
-										</button>
-             						</th>
-             					</tr>
-                				<tr>
-                  					<th>#</th>
-                  					<th>Name</th>
-                  					<th>Phone</th>
-                  					<th>Email</th>
-                  					<th>Favorite</th>
-                				</tr>
-              				</thead>
-              				<tbody>
-              					<tr>
-
-              					</tr> 
-              				</tbody>
-            			</table>          			
-        			</div>
+<html ng-app="myAgenda" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../css/myagendaDashboard.css">
+		<script src="../js/agenda-controller.js"></script>
+		<title>Magenna</title>
+	</head>
+	<body ng-controller="dashboardController">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+      		<div class="container-fluid">
+        		<div class="navbar-header">
+          			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            			<span class="sr-only">Toggle navigation</span>
+            			<span class="icon-bar"></span>
+            			<span class="icon-bar"></span>
+            			<span class="icon-bar"></span>
+          			</button>
+          			<a class="navbar-brand" href="#">Magenna</a>
+        		</div>
+        		<div id="navbar" class="navbar-collapse collapse">
+          			<ul class="nav navbar-nav navbar-right">
+            			<li><a href="#">Profile</a></li>
+		      		</ul>
+          			<form class="navbar-form navbar-right">
+            			<input type="text" size="50" class="form-control" placeholder="Search...">
+          			</form>
+        		</div>
+      		</div>
+    	</nav>
+		
+		<div class="container-fluid">
+      		<div class="row">
+        		<div class="col-sm-3 col-md-2 sidebar">
+          			<ul class="nav nav-sidebar">
+          				@yield('sidebar')
+          			</ul>
+          			<ul class="nav nav-sidebar">
+            			<li><a href="">Logout</a></li>
+          			</ul>
         		</div>
         		
-				<div class="modal fade" id="modalCreate" role="dialog">  		
-    				<form name="formCreate" novalidate="novalidate" class="form-horizontal">
-    					<div align="center" style="background-color:white;width: 20%;margin:0 auto;">
-    						<h1>Contact Details</h1>
-    						<input type="hidden" id="token" ng-model="token" value="{{ csrf_token() }}">
-        					<div class="control-group">
-            					<label class="control-label" for="inputName">Name:</label>
-            					<div class="controls">
-                					<input type="text" id="inputName" ng-model="name"/>
-            					</div>
-        					</div>
-        					<div class="control-group">
-            					<label class="control-label" for="inputPhone">Phone:</label>
-            					<div class="controls">
-                					<input type="text" id="inputPhone" ng-model="phone"/>
-            					</div>
-        					</div>
-        					<div class="control-group">
-            					<label class="control-label" for="inputEmail">Email:</label>
-            					<div class="controls">
-                					<input type="text" id="inputEmail" ng-model="email"/>
-            					</div>
-        					</div>
-        					<div class="control-group">
-            					<label class="control-label" for="inputFav">Favorite:</label>
-            					<div class="controls">
-                					<input class="glyphicon glyphicon-star-empty" type="checkbox" id="inputFav" ng-model="favorite"/>
-            					</div>
-        					</div>			        	
-        					<div class="control-group">
-            					<div class="controls">
-                					<input type="button" value="Submit" ng-click="addContact()" class="btn btn-small btn-primary">
-                					<input type="button" value="Cancel" data-dismiss="modal" class="btn btn-small btn-primary">
-            					</div>
-        					</div>
-        				</div> 
-    				</form>
-				</div>         		
+        		@yield('content')
         		
-  @stop
+      		</div>
+    	</div>    	
+	</body>
+</html>
