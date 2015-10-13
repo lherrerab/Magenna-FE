@@ -1,30 +1,99 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+namespace Magenna\Http\Controllers;
 
-Route::resource('Magenna', 'AgendaController');
-Route::get('contacts',function(){
-	return view('contacts');
-});
-Route::get('index',function(){
-	return view('index');
-});
-Route::get('notes',function(){
-	return view('notes');
-});
-Route::get('agenda',function(){
-	return view('index');
-});
+use Illuminate\Http\Request;
+use Magenna\Http\Requests;
+use Magenna\Http\Controllers\Controller;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+class ContactsController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $contacts = \Magenna\Contacts::all();
+        return view('contacts',$contacts);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+		//
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+    	$contact = new \Magenna\Contacts;
+		$contact->user_id = '1';
+    	$contact->username = $request->input('name');
+    	$contact->email  = $request->input('email');
+		$contact->save();
+		
+		return \Magenna\Contacts::all();   	
+        //return "La vida es asi";
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+    	$names = array(
+      		1 => "John",
+      		2 => "Mary",
+      		3 => "Steven"
+    	);    
+    	return array($id => $names[$id]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
