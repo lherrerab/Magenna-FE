@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Magenna\Http\Requests;
 use Magenna\Http\Controllers\Controller;
 
-class AgendaController extends Controller
+class NotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        return view('agenda');
+        return view('notes');
     }
 
     /**

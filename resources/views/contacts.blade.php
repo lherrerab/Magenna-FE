@@ -3,8 +3,8 @@
 @section('sidebar')
             			<li><a href="/magenna">Dashboard <span class="sr-only">(current)</span></a></li>
             			<li class="active"><a href="#" ng-click="activateContacts()">Contacts</a></li>
-            			<li><a href="agenda">Agenda</a></li>
-            			<li><a href="notes">Notes</a></li>
+            			<li><a href="/magenna/agenda">Agenda</a></li>
+            			<li><a href="/magenna/notes">Notes</a></li>
 @stop
 
 @section('content')        		
@@ -33,8 +33,12 @@
                 				</tr>
               				</thead>
               				<tbody>
-              					<tr>
-
+              					<tr ng-repeat="contact in contacts">
+              					    <td><% ($index+1) %></td>
+									<td><%contact.name%></td>
+									<td><%contact.phone%></td>
+									<td><%contact.email%></td>
+									<td><%contact.favorite%></td>
               					</tr> 
               				</tbody>
             			</table>          			
@@ -45,7 +49,7 @@
     				<form name="formCreate" novalidate="novalidate" class="form-horizontal">
     					<div align="center" style="background-color:white;width: 20%;margin:0 auto;">
     						<h1>Contact Details</h1>
-    						<input type="hidden" id="token" ng-model="token" value="{{ csrf_token() }}">
+    						<input type="hidden" name="_token" id="token" ng-model="token" value="{{ Session::token() }}">
         					<div class="control-group">
             					<label class="control-label" for="inputName">Name:</label>
             					<div class="controls">
@@ -67,7 +71,8 @@
         					<div class="control-group">
             					<label class="control-label" for="inputFav">Favorite:</label>
             					<div class="controls">
-                					<input class="glyphicon glyphicon-star-empty" type="checkbox" id="inputFav" ng-model="favorite"/>
+                					<input class="glyphicon glyphicon-star-empty" type="checkbox" 
+                							id="inputFav" ng-model="favorite" ng-true-value="1" ng-false-value="0" ng-checked="checkbox == 1"/>
             					</div>
         					</div>			        	
         					<div class="control-group">

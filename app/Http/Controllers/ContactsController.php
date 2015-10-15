@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Magenna\Http\Requests;
 use Magenna\Http\Controllers\Controller;
 
-class AgendaController extends Controller
+class ContactsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,14 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        return view('agenda');
+        $contacts = \Magenna\Contacts::all();
+        return view('contacts',$contacts);
     }
+	
+	public function selectAll(){
+		$contacts = \Magenna\Contacts::all();
+		return $contacts;
+	}
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +31,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        //
+		//
     }
 
     /**
@@ -36,7 +42,15 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$contact = new \Magenna\Contacts;
+		$contact->user_id = '1';
+    	$contact->name = $request->input('name');
+    	$contact->email  = $request->input('email');
+		$contact->phone  = $request->input('phone');
+		$contact->favorite  = $request->input('favorite');
+		$contact->save();
+		
+		return \Magenna\Contacts::all();   	
     }
 
     /**
@@ -47,7 +61,12 @@ class AgendaController extends Controller
      */
     public function show($id)
     {
-        //
+    	$names = array(
+      		1 => "John",
+      		2 => "Mary",
+      		3 => "Steven"
+    	);    
+    	return array($id => $names[$id]);
     }
 
     /**
