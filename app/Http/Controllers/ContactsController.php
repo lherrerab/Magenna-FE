@@ -89,7 +89,14 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	$contact = \Magenna\Contacts::find($id);
+		
+		$contact->name = $request->input('name');
+    	$contact->email  = $request->input('email');
+		$contact->phone  = $request->input('phone');
+		$contact->save();		  	
+		
+        return \Magenna\Contacts::all();  
     }
 
     /**
