@@ -56,6 +56,34 @@ myApp.controller('dashboardController', function($scope,$http)
 		});	
 	}
 	
+	$scope.loadData = function($index)
+	{
+		$contact = $scope.contacts[$index];		
+		$scope.editName = $contact['name'];
+		$scope.editPhone = $contact['phone'];
+		$scope.editEmail = $contact['email'];
+		$scope.id = $contact['id'];
+
+	}
+	
+	$scope.editContact = function()
+	{
+		$http({
+			method: 'PUT',
+			url: '/magenna/contacts/'+$scope.id,
+			headers: {'Content-Type': 'application/json'},
+			params: {'_token': $scope.token, 'name' :$scope.editName, 'phone': $scope.editPhone, 
+						'email': $scope.editEmail }
+		}).success(function(data, status, headers, config) {			
+			$scope.contacts = data;
+			$('#modalEdit').modal('hide');
+			$scope.formCreate.$setPristine();			
+		}).error(function(data, status, headers, config) {
+			// called asynchronously if an error occurs
+			// or server returns response with an error status.
+		});	
+	}
+	
 	$scope.getContacts = function()
 	{
 		$http({
