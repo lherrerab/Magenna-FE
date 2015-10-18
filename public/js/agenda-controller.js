@@ -66,6 +66,25 @@ myApp.controller('dashboardController', function($scope,$http)
 
 	}
 	
+	$scope.setFavorite = function($index)
+	{
+		$contact = $scope.contacts[$index];				
+		
+		$favorite = document.getElementsByName("favorite");
+	
+		$http({
+			method: 'PUT',
+			url: '/magenna/contacts/'+$contact['id'],
+			headers: {'Content-Type': 'application/json'},
+			params: {'_token': $scope.token, 'favorite': $favorite[$index].checked }
+		}).success(function(data, status, headers, config) {				
+		}).error(function(data, status, headers, config) {
+			// called asynchronously if an error occurs
+			// or server returns response with an error status.
+		});	
+		
+	}
+	
 	$scope.editContact = function()
 	{
 		$http({
@@ -77,6 +96,23 @@ myApp.controller('dashboardController', function($scope,$http)
 		}).success(function(data, status, headers, config) {			
 			$scope.contacts = data;
 			$('#modalEdit').modal('hide');
+			$scope.formCreate.$setPristine();			
+		}).error(function(data, status, headers, config) {
+			// called asynchronously if an error occurs
+			// or server returns response with an error status.
+		});	
+	}
+
+	$scope.deleteContact = function()
+	{
+		$http({
+			method: 'DELETE',
+			url: '/magenna/contacts/'+$scope.id,
+			headers: {'Content-Type': 'application/json'},
+			params: {'_token': $scope.token}
+		}).success(function(data, status, headers, config) {			
+			$scope.contacts = data;
+			$('#modalDelete').modal('hide');
 			$scope.formCreate.$setPristine();			
 		}).error(function(data, status, headers, config) {
 			// called asynchronously if an error occurs
