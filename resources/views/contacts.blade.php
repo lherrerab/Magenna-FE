@@ -41,12 +41,15 @@
 						<td><%contact.name%></td>
 						<td><%contact.phone%></td>
 						<td><%contact.email%></td>
-						<td><%contact.favorite%></td>
+						<td>
+							<input type="checkbox" name="favorite" ng-true-value="1" ng-false-value="0" 
+								   ng-checked="<%contact.favorite%>" ng-click="setFavorite($index)"/>													
+						</td>
 						<td>
 							<button title="Edit" class="btn" ng-click="loadData($index)" data-toggle="modal" data-target="#modalEdit">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</button>
-							<button title="Delete" class="btn" data-toggle="modal" data-target="#modalDelete">
+							<button title="Delete" class="btn" ng-click="loadData($index)" data-toggle="modal" data-target="#modalDelete">
 								<span class="glyphicon glyphicon-remove"></span>
 							</button>																					
 						</td>
@@ -88,7 +91,7 @@
         		</div>			        	
         		<div class="control-group">
             		<div class="controls">
-                		<input type="button" value="Submit" ng-click="addContact()" class="btn btn-small btn-primary">
+                		<input type="button" value="Add Contact" ng-click="addContact()" class="btn btn-small btn-primary">
                 		<input type="button" value="Cancel" data-dismiss="modal" class="btn btn-small btn-primary">
             		</div>
         		</div>
@@ -99,7 +102,7 @@
 	<div class="modal fade" id="modalEdit" role="dialog">  		
     	<form name="formEdit" novalidate="novalidate" class="form-horizontal">
     		<div align="center" style="background-color:white;width: 20%;margin:0 auto;">
-    			<h1>Contact Details</h1>
+    			<h1>Edit Details</h1>
     			<input type="hidden" name="_token" id="token" ng-model="token" value="{{ Session::token() }}">
     			<input type="hidden" name="id" id="id" ng-model="id" value="<% id %>">
     			<div class="control-group">
@@ -122,13 +125,39 @@
         		</div>        	
         		<div class="control-group">
             		<div class="controls">
-                		<input type="button" value="Submit" ng-click="editContact()" class="btn btn-small btn-primary">
+                		<input type="button" value="Edit Contact" ng-click="editContact()" class="btn btn-small btn-primary">
+                		<input type="button" value="Cancel" data-dismiss="modal" class="btn btn-small btn-primary">
+            		</div>
+        		</div>
+        	</div> 
+    	</form>
+	</div>     
+	
+	<div class="modal fade" id="modalDelete" role="dialog">  		
+    	<form name="formEdit" novalidate="novalidate" class="form-horizontal">
+    		<div align="center" style="background-color:white;width: 20%;margin:0 auto;">
+    			<h3>Do you want to remove this contact?</h3>
+    			<input type="hidden" name="_token" id="token" ng-model="token" value="{{ Session::token() }}">
+    			<input type="hidden" name="id" id="id" ng-model="id" value="<% id %>">
+    			<div class="control-group">    				
+    				<label for="inputEditName">Name: <%editName%></label>
+    			</div>
+        		<div class="control-group">
+            		<label for="inputEditPhone">Phone: <%editPhone%></label>
+        		</div>
+        		<div class="control-group">
+            		<label for="inputEditEmail">Email: <%editEmail%></label>
+        		</div>        	
+        		<div class="control-group">
+            		<div class="controls">
+                		<input type="button" value="Delete" ng-click="deleteContact()" class="btn btn-small btn-primary">
                 		<input type="button" value="Cancel" data-dismiss="modal" class="btn btn-small btn-primary">
             		</div>
         		</div>
         	</div> 
     	</form>
 	</div>         		
+
         	       		
         		
   @stop
