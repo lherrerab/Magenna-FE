@@ -91,9 +91,18 @@ class ContactsController extends Controller
     {
     	$contact = \Magenna\Contacts::find($id);
 		
-		$contact->name = $request->input('name');
-    	$contact->email  = $request->input('email');
-		$contact->phone  = $request->input('phone');
+		if(!empty($request->input('name')))
+		{
+			$contact->name = $request->input('name');
+    		$contact->email  = $request->input('email');
+			$contact->phone  = $request->input('phone');
+		}
+		
+		if(!empty($request->input('favorite')))
+		{
+			$contact->favorite = ($request->input('favorite')== 'true')?1:0;
+		}
+				
 		$contact->save();		  	
 		
         return \Magenna\Contacts::all();  
@@ -107,6 +116,9 @@ class ContactsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = \Magenna\Contacts::find($id);
+        $contact->delete();
+        
+		return \Magenna\Contacts::all(); 
     }
 }
