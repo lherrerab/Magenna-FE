@@ -17,6 +17,7 @@ Route::get('magenna/selectContacts', 'ContactsController@selectAll');
 Route::resource('magenna/notes', 'NotesController');
 Route::resource('magenna/agenda', 'AgendaController');
 
-Route::get('/', function () {
+Route::get('/', function () 
+{
     return view('welcome');
 });
