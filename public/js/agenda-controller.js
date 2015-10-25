@@ -8,7 +8,8 @@ myApp.controller('loginController', function($scope,$http)
 	
 	$scope.checkCredentials = function()
 	{
-		if($scope.validateFields() == true){
+		if($scope.validateFields() == true)
+		{
 			$http({
 				method: 'POST',
 				url: 'http://localhost:8000/magenna/contacts',
