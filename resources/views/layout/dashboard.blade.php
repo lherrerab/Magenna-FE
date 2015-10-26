@@ -12,6 +12,7 @@
 		<script src="../js/agenda-controller.js"></script>
 		<title>Magenna</title>
 	</head>
+	
 	<body ng-controller="dashboardController">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
       		<div class="container-fluid">
